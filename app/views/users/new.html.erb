@@ -1,5 +1,18 @@
 <main>
-<div class="content">
-The login
-</div>
+  <section>
+    <header>
+      <h1 >Sign up / Log in</h1>
+    </header>
+    <main>
+      <%= form_for(@user) do |form| %>
+        <div>
+          <%= form.label(:email, 'Email address') %>
+          <%= form.text_field(:email, placeholder: "e.g. me@epfl.ch") %>
+        </div>
+        <div>
+          <%= form.submit('Log in') %>
+        </div>
+      <% end %>
+    </main>
+  </section>
 </main>

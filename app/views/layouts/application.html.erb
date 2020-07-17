@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Pin</title>
-    <%= csrf_meta_tags %>
+    <meta name="description" content="Pin an application to create a pinboard for images found on the internet.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,700,700i" rel="stylesheet">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
   </head>
-
   <body>
+    <header>
+      <div class="nav">
+        <div class="container">
+          <div nav nav-pills float-left>
+            <em class="nav-item">Pin</em>
+          </div>
+          <nav class="nav nav-tabs float-right">
+            <ul class="nav-item">
+              <li><a href="#nolink">Log In</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer>
+      <div class="container">
+        <nav>
+          <ul class="nav nav-tabs float-left">
+            <li class="nav-item"><a href="/about.html">About</a></li>
+          </ul>
+        </nav>
+        <p class="copyright float-right">&copy; EPFL 2020</p>
+      </div>
+    </footer>
   </body>
 </html>

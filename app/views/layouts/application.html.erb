@@ -7,35 +7,40 @@
     <meta name="description" content="Pin an application to create a pinboard for images found on the internet.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
   </head>
   <body>
-    <header>
-      <div class="nav">
-        <div class="container">
-          <div nav nav-pills float-left>
-            <em class="nav-item">Pin</em>
-          </div>
-          <nav class="nav nav-tabs float-right">
-            <ul class="nav-item">
-              <li><a href="#nolink">Log In</a></li>
-            </ul>
-          </nav>
+    <header class="sticky-top mb-5 mb-sm-5">
+      <div class="p-sm-3 p-3 bg-light clearfix">
+        <div class="float-left pt-2">
+          <h1 class="m-0 p-3">
+            <a class="text-danger logo" href="/">Pin</a>
+          </h1>
+        </div>
+        <div class="float-right py-sm-4 py-4 mr-5">
+          <a href="user_new_path m-0 p-3">
+            <h5 class="text-dark">Account</h5>
+          </a>
         </div>
       </div>
     </header>
-    <%= yield %>
-    <footer>
-      <div class="container">
-        <nav>
-          <ul class="nav nav-tabs float-left">
-            <li class="nav-item"><a href="/about.html">About</a></li>
-          </ul>
-        </nav>
-        <p class="copyright float-right">&copy; EPFL 2020</p>
-      </div>
-    </footer>
-  </body>
-</html>
+      <%= yield %>
+      <footer class="bg-dark mt-5 mt-sm-5">
+        <div class="p-5 p-sm-5">
+          <div class="clearfix ">
+            <div class="float-left">
+              <a href="/about.html">
+                <h5 class="text-light">About</h5>
+              </a>
+            </div>
+            <div class="float-right">
+              <small class="text-muted">&copy; 2020</small>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </body>
+  </html>

@@ -3,6 +3,7 @@ class PinsController < ApplicationController
   end
 
   def index
+    @pins = Pin.all
   end
 
   def new

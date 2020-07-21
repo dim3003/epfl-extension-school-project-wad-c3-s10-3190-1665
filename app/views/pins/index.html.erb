@@ -1,17 +1,20 @@
 <div class='container'>
   <% if(@pins.any?) %>
-    <% @pins.each do |pin| %>
-      <div class="card-deck">
+    <div class= "card-deck">
+      <% @pins.each do |pin| %>
+      <div class="d-flex">
         <div class="card">
-          <div class="image">
-            <img src="http://loremflickr.com/320/150?random=4"/>
+          <div class="d-flex">
+              <img src="http://loremflickr.com/320/150?random=4"/>
           </div>
-          <div class="card-inner">
-            <h2><%= pin.title %></h2>
+          <div class="p-2">
+            <h3 class="text-center white"><%= pin.title %></h3>
           </div>
-        <% end %>
+        </div>
       </div>
-    <% else %>
-      <h3>No pin found</h3>
-    <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <h3>No pin found</h3>
+  <% end %>
 </div>

@@ -15,6 +15,7 @@ class PinsController < ApplicationController
 
   def create
     @pin = Pin.new(pin_params)
+    @pin.save!
     redirect_to pins_path
   end
 
@@ -23,5 +24,5 @@ class PinsController < ApplicationController
     def pin_params
       params.require(:pin).permit(:title, :image_url, :tag)
     end
-    
+
 end

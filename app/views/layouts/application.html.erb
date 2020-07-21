@@ -21,9 +21,14 @@
           </h1>
         </div>
         <div class="float-right py-sm-4 py-4 mr-5">
-          <a href="user_new_path">
+          <%= link_to(new_user_path) do %>
             <h5 class="text-dark">Account</h5>
-          </a>
+          <% end %>
+        </div>
+        <div class="float-right py-sm-4 py-4 mr-5">
+          <%= link_to(pins_path) do %>
+            <h5 class="text-dark">All pins</h5>
+          <% end %>
         </div>
       </div>
     </header>

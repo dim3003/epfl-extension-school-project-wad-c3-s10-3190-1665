@@ -1,2 +1,0 @@
-class PinModel < ApplicationRecord
-end

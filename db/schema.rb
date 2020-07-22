@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200721132554) do
+ActiveRecord::Schema.define(version: 20200722091752) do
 
   create_table "pins", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20200721132554) do
     t.string "tag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_pins_on_user_id"
   end
 
   create_table "pins_users", id: false, force: :cascade do |t|

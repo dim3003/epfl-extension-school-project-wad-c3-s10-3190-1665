@@ -1,3 +1,12 @@
 <div class='container'>
+  <% if (@user.present?) %>
+    <div class = "pt-2 text-center">
+    <%= link_to(new_pin_path) do %>
+      <%= button_tag('Create a new Pin', class: 'btn btn-primary btn-lg active') %>
+    <% end %>
+        <hr>
+    </div>
+
+  <% end %>
   <%= render(partial: 'pincard', locals: {pins: @pins}) %>
 </div>

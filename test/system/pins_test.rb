@@ -30,4 +30,42 @@ class PinsTest < ApplicationSystemTestCase
     assert page.has_content?('Start a blog')
   end
 
+  test 'search' do
+    pin_1 = Pin.new title: 'Climb Mont Blanc',
+                      user: User.new
+    pin_1.save!
+    pin_2 = Pin.new title: 'Visit Niagara Falls',
+                      user: User.new
+    pin_2.save!
+
+    visit('/')
+    fill_in('q', with: 'Mont')
+    click_on('Search', match: :first)
+
+    assert current_path.include?(pins_path)
+    assert page.has_content?('Climb Mont Blanc')
+    refute page.has_content?('Visit Niagara Falls')
+  end
+
+  test 'search no pin found' do
+    visit(pins_path)
+    assert page.has_content?('No pin found')
+  end
+
+  test 'check homepage pins' do
+    3.times do |i|
+      pin = Pin.new title: "Exciting new pin #{i+1}",
+                      user: User.new
+      pin.save!
+    end
+
+    visit('/')
+
+    assert page.has_content?('Exciting new pin 1')
+    assert page.has_content?('Exciting new pin 2')
+    assert page.has_content?('Exciting new pin 3')
+
+    refute page.has_content?('Exciting new pin 4')
+  end
+
 end

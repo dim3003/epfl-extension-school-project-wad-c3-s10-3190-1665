@@ -3,7 +3,13 @@ class PinsController < ApplicationController
   end
 
   def index
-    @pins = Pin.all
+    if(params[:q])
+      @search_term = params[:q]
+      @pins = Pin.search(@search_term)
+    else
+      @pins = Pin.all
+    end
+    
     if(session[:user_id].present?)
       @user = User.find(session[:user_id])
     else

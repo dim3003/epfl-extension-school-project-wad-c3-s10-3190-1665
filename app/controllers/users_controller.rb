@@ -7,6 +7,8 @@ class UsersController < ApplicationController
     user = User.find_or_create_by(user_params)
     session[:user_id] = user.id
     redirect_to pins_path
+  end
+
   private
 
   def user_params

@@ -4,6 +4,11 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.all
+    if(session[:user_id].present?)
+      @user = User.find(session[:user_id])
+    else
+      @user = nil
+    end
   end
 
   def new

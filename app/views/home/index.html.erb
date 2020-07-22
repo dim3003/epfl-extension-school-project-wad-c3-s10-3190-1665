@@ -1,4 +1,7 @@
 <div class="container">
+  <div>
+    <%= render(partial:'search_form') %>
+  </div>
   <h1 class= 'pb-5'>Most recent pins... </h1>
   <%= render(partial: 'pincard', locals: {pins: @pins}) %>
 </div>

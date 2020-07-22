@@ -1,18 +1,20 @@
 <% if(pins.any?) %>
-  <div class= "card-deck">
-    <% pins.each do |pin| %>
-    <div class="d-flex my-4">
-      <div class="card" style="width: 18rem">
-        <div class="d-flex">
-          <%= render(partial: 'pin_pic', locals: {image_url: pin.image_url}) %>
-        </div>
-        <div class="p-2">
-          <h5 class="text-center white"><%= pin.title %></h5>
-        </div>
-      </div>
+    <div class= "card-deck">
+      <% pins.each do |pin| %>
+        <%= link_to(pin_path(pin)) do %>
+          <div class="d-flex my-4">
+            <div class="card" style="width: 18rem">
+              <div class="d-flex">
+                <%= render(partial: 'pin_pic', locals: {image_url: pin.image_url}) %>
+              </div>
+              <div class="p-2 text-dark">
+                <h5 class="text-center white"><%= pin.title %></h5>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
-    <% end %>
-  </div>
 <% else %>
   <h3>No pin found</h3>
 <% end %>

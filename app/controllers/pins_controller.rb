@@ -9,7 +9,7 @@ class PinsController < ApplicationController
     else
       @pins = Pin.all
     end
-    
+
     if(session[:user_id].present?)
       @user = User.find(session[:user_id])
     else
@@ -22,6 +22,7 @@ class PinsController < ApplicationController
   end
 
   def show
+    @pin =Pin.find(params[:id])
   end
 
   def create

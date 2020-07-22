@@ -2,9 +2,9 @@
   <div class='row'>
     <div class='col-sm-3'></div>
     <div class='col-sm-6'>
-      <h1 class='mb-sm-5 mb-5'><%= pin.title %></h1>
-      <%= render(partial: 'pin_pic', locals: {image_url: pin.image_url}) %>
-      <%= pin.tag %>
+      <h1 class='mb-sm-5 mb-5'><%= @pin.title %></h1>
+      <%= render(partial: 'pin_pic', locals: {image_url: @pin.image_url}) %>
+      <%= @pin.tag %>
     </div>
     <div class='col-sm-3'></div>
   </div>

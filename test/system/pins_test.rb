@@ -17,11 +17,11 @@ class PinsTest < ApplicationSystemTestCase
   end
 
   test 'index loads pins' do
-    pin_1 = pin.new title: 'Join a tennis club',
+    pin_1 = Pin.new title: 'Join a tennis club',
                       user: User.new
     pin_1.save!
 
-    pin_2 = pin.new title: 'Start a blog',
+    pin_2 = Pin.new title: 'Start a blog',
                       user: User.new
     pin_2.save!
 

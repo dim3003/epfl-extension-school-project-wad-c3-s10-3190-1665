@@ -4,7 +4,6 @@ class PinsController < ApplicationController
 
   def index
     @pins = Pin.all
-    @user = User.find(session[:user_id])
   end
 
   def new

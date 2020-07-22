@@ -2,12 +2,12 @@
   <div class= "card-deck">
     <% pins.each do |pin| %>
     <div class="d-flex my-4">
-      <div class="card">
+      <div class="card" style="width: 18rem">
         <div class="d-flex">
-            <img src="http://loremflickr.com/320/150?random=4"/>
+          <%= render(partial: 'pin_pic', locals: {image_url: pin.image_url}) %>
         </div>
         <div class="p-2">
-          <h3 class="text-center white"><%= pin.title %></h3>
+          <h5 class="text-center white"><%= pin.title %></h5>
         </div>
       </div>
     </div>

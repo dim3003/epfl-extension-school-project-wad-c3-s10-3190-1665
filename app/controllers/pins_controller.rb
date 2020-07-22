@@ -15,9 +15,14 @@ class PinsController < ApplicationController
   end
 
   def create
+    user = User.find(session[:user_id])
     @pin = Pin.new(pin_params)
-    @pin.save!
-    redirect_to pins_path
+    @pin.user = user
+    if(@pin.save)
+      redirect_to pins_path
+    else
+      render 'new'
+    end
   end
 
   private

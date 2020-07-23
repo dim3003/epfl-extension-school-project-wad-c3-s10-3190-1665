@@ -43,6 +43,7 @@ class PinsController < ApplicationController
 
   def show
     @pin =Pin.find(params[:id])
+    @pin_id = params[:id]
     @comment = Comment.new
 
     if(session[:user_id].present?)

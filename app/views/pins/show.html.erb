@@ -20,7 +20,7 @@
           </div>
           <div class='col-sm-3'>
             <%= form_tag(user_goals_path(@user)) do %>
-              <%= hidden_field_tag('pin_id', @pin_id) %>
+              <%= hidden_field_tag('pin_id', @pin.id) %>
               <%= button_tag('Add to My Pins', class: 'btn btn-secondary btn-lg', disabled: @disable_add_goal) %>
             <% end %>
           </div>

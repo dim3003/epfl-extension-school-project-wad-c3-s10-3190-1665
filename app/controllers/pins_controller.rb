@@ -1,5 +1,10 @@
 class PinsController < ApplicationController
   def edit
+    if(session[:user_id].present?)
+      @user = User.find(session[:user_id])
+    else
+      @user = nil
+    end
     @pin = Pin.find(params[:id])
   end
 
@@ -28,6 +33,11 @@ class PinsController < ApplicationController
   end
 
   def new
+    if(session[:user_id].present?)
+      @user = User.find(session[:user_id])
+    else
+      @user = nil
+    end
     @pin = Pin.new
   end
 

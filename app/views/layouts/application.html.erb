@@ -21,33 +21,45 @@
           </h1>
         </div>
         <div class="float-right py-sm-4 py-4 mr-5">
+          <a href="/about.html">
+            <h5 class="text-dark">About</h5>
+          </a>
+        </div>
+        <div class="float-right py-sm-4 py-4 mr-5">
           <%= link_to(new_user_path) do %>
-          <h5 class="text-dark">Account</h5>
+          <h5 class="text-dark">Sign up / Log in</h5>
+          <% end %>
+        </div>
+        <% if(@user.present?) %>
+          <div class="float-right py-sm-4 py-4 mr-5">
+            <%= link_to(pins_path) do %>
+              <h5 class="text-dark">My Pins</h5>
+            <% end %>
+          </div>
         <% end %>
+        <div class="float-right py-sm-4 py-4 mr-5">
+          <%= link_to(pins_path) do %>
+          <h5 class="text-dark">All Pins</h5>
+          <% end %>
+       </div>
+    </div>
+  </header>
+    <main>
+        <%= yield %>
+    </main>
+  <footer class="bg-dark mt-5 mt-sm-5">
+      <div class="p-5 p-sm-5">
+        <div class="clearfix ">
+          <div class="float-left">
+            <a href="/about.html">
+              <h5 class="text-light">About</h5>
+            </a>
+          </div>
+          <div class="float-right">
+            <small class="text-muted">&copy; 2020</small>
+          </div>
+        </div>
       </div>
-      <div class="float-right py-sm-4 py-4 mr-5">
-        <%= link_to(pins_path) do %>
-        <h5 class="text-dark">All pins</h5>
-      <% end %>
-    </div>
-</div>
-</header>
-<main>
-<%= yield %>
-</main>
-<footer class="bg-dark mt-5 mt-sm-5">
-<div class="p-5 p-sm-5">
-  <div class="clearfix ">
-    <div class="float-left">
-      <a href="/about.html">
-        <h5 class="text-light">About</h5>
-      </a>
-    </div>
-    <div class="float-right">
-      <small class="text-muted">&copy; 2020</small>
-    </div>
-  </div>
-</div>
-</footer>
-</body>
+    </footer>
+  </body>
 </html>

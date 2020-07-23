@@ -1,1 +1,10 @@
-<%= render(partial: 'pincard', locals: {pins: @pins}) %>
+<div class='container'>
+  <h1 class='py-3'>My Pins</h1>
+  <%= render(partial: 'pincard', locals: {pins: @pins}) %>
+  <hr>
+  <div class = "pt-2 text-center">
+  <%= link_to(new_pin_path) do %>
+    <%= button_tag('Create a new Pin', class: 'btn btn-primary btn-lg active') %>
+  <% end %>
+  </div>
+</div>

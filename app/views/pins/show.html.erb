@@ -11,9 +11,21 @@
       </div>
       <% if(@user.present?) %>
         <div class='row py-3'>
-          <%= link_to(edit_pin_path(@pin)) do %>
-            <%= button_tag('Edit Pin', class: 'btn btn-secondary btn-lg') %>
-          <% end %>
+          <div class='col-sm-3'>
+          </div>
+          <div class='col-sm-3'>
+            <%= link_to(edit_pin_path(@pin)) do %>
+              <%= button_tag('Edit Pin', class: 'btn btn-secondary btn-lg') %>
+            <% end %>
+          </div>
+          <div class='col-sm-3'>
+            <%= form_tag(user_goals_path(@user)) do %>
+              <%= hidden_field_tag('pin_id', @pin_id) %>
+              <%= button_tag('Add to My Pins', class: 'btn btn-secondary btn-lg') %>
+            <% end %>
+          </div>
+          <div class='col-sm-3'>
+          </div>
         </div>
       <% end %>
     </div>

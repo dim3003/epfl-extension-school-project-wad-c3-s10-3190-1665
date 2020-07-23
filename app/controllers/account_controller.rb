@@ -5,5 +5,7 @@ class AccountController < ApplicationController
     else
       @user = nil
     end
+
+    @pins = @user.goals
   end
 end

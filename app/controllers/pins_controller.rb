@@ -1,5 +1,15 @@
 class PinsController < ApplicationController
   def edit
+    @pin = Pin.find(params[:id])
+  end
+
+  def update
+    @pin = Pin.find(params[:id])
+    if(@pin.update(pin_params))
+      redirect_to pins_path
+    else
+      render 'edit'
+    end
   end
 
   def index
@@ -30,7 +40,6 @@ class PinsController < ApplicationController
     else
       @user = nil
     end
-    
   end
 
   def create

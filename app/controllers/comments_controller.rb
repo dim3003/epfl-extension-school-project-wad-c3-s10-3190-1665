@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     comment.pin = pin
     comment.user = user
     comment.save
-    redirect_to idea_path(idea)
+    redirect_to pin_path(pin)
   end
 
   private

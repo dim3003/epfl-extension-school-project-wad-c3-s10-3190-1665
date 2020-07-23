@@ -4,14 +4,22 @@
     <div class='col-sm-6'>
       <h1 class='mb-sm-5 mb-5'><%= @pin.title %></h1>
       <%= render(partial: 'pin_pic', locals: {image_url: @pin.image_url}) %>
-      <div class='py-5 row'>
+      <div class='py-3 row'>
         <dt class="col-sm-2">Tag:
         </dt>
         <dd><%= @pin.tag %></dd>
       </div>
+      <% if(@user.present?) %>
+        <div class='row py-3'>
+          <%= link_to(edit_pin_path(@pin)) do %>
+            <%= button_tag('Edit Pin', class: 'btn btn-secondary btn-lg') %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class='col-sm-3'></div>
   </div>
+  <hr>
   <div>
     <h4>Discussion</h4>
     <% if(@user.present?) %>

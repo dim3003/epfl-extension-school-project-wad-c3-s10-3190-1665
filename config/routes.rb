@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  get 'account/mypins', to: 'account#show', as: 'account'
+  get 'account/mypins', to: 'account#mypins', as: 'account'
 
 end

@@ -47,6 +47,7 @@ class PinsController < ApplicationController
 
     if(session[:user_id].present?)
       @user = User.find(session[:user_id])
+      @disable_add_goal = @user.goals.exists?(@pin.id)
     else
       @user = nil
     end

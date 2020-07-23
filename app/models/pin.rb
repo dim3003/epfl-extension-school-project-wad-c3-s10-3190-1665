@@ -2,6 +2,8 @@ class Pin < ApplicationRecord
 
     belongs_to :user
 
+    has_many :comments
+
     def self.most_recent
       all.order(created_at: :desc).limit(6)
     end

@@ -14,32 +14,36 @@
   </div>
   <div>
     <h4>Discussion</h4>
-
-    <%= form_for([@pin, @comment], html: {class: 'py-5'}) do |form| %>
-        <div class='form-group row'>
-          <%= form.label(:body, 'Add a comment', class: 'col-sm-3 py-sm-2 px-0 text-center') %>
-          <%= form.text_area(:body, class: 'col-sm-6 px-0') %>
-        </div>
-        <div class='form-group row'>
-          <div class='col-sm-3'>
+    <% if(@user.present?) %>
+      <%= form_for([@pin, @comment], html: {class: 'py-5'}) do |form| %>
+          <div class='form-group row'>
+            <%= form.label(:body, 'Add a comment', class: 'col-sm-3 py-sm-2 px-0 text-center') %>
+            <%= form.text_area(:body, class: 'col-sm-6 px-0') %>
           </div>
-          <%= form.submit('Post', class: 'btn btn-primary col-sm-6') %>
-        </div>
+          <div class='form-group row'>
+            <div class='col-sm-3'>
+            </div>
+            <%= form.submit('Post', class: 'btn btn-primary col-sm-6') %>
+          </div>
+      <% end %>
+      <hr>
     <% end %>
 
-    <hr>
-
-    <ul>
-      <% @pin.comments.each do |comment| %>
-        <li class= 'list-unstyled row py-2'>
-          <div class='col-sm-1'>
-            <%= image_tag('avatar', alt: 'Default avatar', class: 'avatar') %>
-          </div>
-          <div class='col-sm-5'>
-            <h5><%= comment.user.email %></h5>
-            <p><%= comment.body %></p>
-          </div>
-        </li>
-      <% end %>
-    </ul>
+    <% if(@pin.comments.any?) %>
+      <ul>
+        <% @pin.comments.each do |comment| %>
+          <li class= 'list-unstyled row py-2'>
+            <div class='col-sm-1'>
+              <%= image_tag('avatar', alt: 'Default avatar', class: 'avatar') %>
+            </div>
+            <div class='col-sm-5'>
+              <h5><%= comment.user.email %></h5>
+              <p><%= comment.body %></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class='py-5'>No comments yet</p>
+    <% end %>
 </div>

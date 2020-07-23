@@ -24,6 +24,13 @@ class PinsController < ApplicationController
   def show
     @pin =Pin.find(params[:id])
     @comment = Comment.new
+
+    if(session[:user_id].present?)
+      @user = User.find(session[:user_id])
+    else
+      @user = nil
+    end
+    
   end
 
   def create

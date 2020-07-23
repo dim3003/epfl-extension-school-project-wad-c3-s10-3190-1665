@@ -5,11 +5,26 @@
       <h1 class='mb-sm-5 mb-5'><%= @pin.title %></h1>
       <%= render(partial: 'pin_pic', locals: {image_url: @pin.image_url}) %>
       <div class='py-5 row'>
-       <dt class="col-sm-2">Tag: </dt>
-       <dd><%= @pin.tag %></dd>
+        <dt class="col-sm-2">Tag:
+        </dt>
+        <dd><%= @pin.tag %></dd>
       </div>
     </div>
     <div class='col-sm-3'></div>
   </div>
-
+  <div>
+    <h4>Discussion</h4>
+    <ul class='row'>
+      <% @pin.comments.each do |comment| %>
+        <li>
+          <div class='col-sm-3'>
+            <%= image_tag('avatar', alt: 'Default avatar', class: 'avatar') %>
+          </div>
+          <div class='col-sm-5'>
+            <h3>Anonymous</h3>
+            <p><%= comment.body %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
 </div>

@@ -86,7 +86,27 @@ class PinsTest < ApplicationSystemTestCase
     assert page.has_content?('No pin found')
   end
 
+  test 'search tag test' do
+    pin_1 = Pin.new title: 'Europe cycling',
+                    user: User.new,
+                    tag: 'cycling'
+    pin_1.save!
+    pin_2 = Pin.new title: 'Provence',
+                    tag: 'France cycling',
+                    user: User.new
+    pin_2.save!
+    pin_3 = Pin.new title: 'Kitty',
+                    tag: 'cat',
+                    user: User.new
+    pin_3.save!
 
+    visit('/')
+    fill_in('q', with: 'cycling')
+    click_on('Search', match: :first)
 
+    assert page.has_content?('Europe cycling')
+    assert page.has_content?('Provence')
+    refute page.has_content?('Kitty')
+  end
 
 end

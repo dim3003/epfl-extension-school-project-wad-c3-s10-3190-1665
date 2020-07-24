@@ -65,10 +65,10 @@ class PinsTest < ApplicationSystemTestCase
   end
 
   test 'search' do
-    pin_1 = Pin.new title: 'Climb Mont Blanc',
+    pin_1 = Pin.new title: 'Mont Blanc',
                       user: User.new
     pin_1.save!
-    pin_2 = Pin.new title: 'Visit Niagara Falls',
+    pin_2 = Pin.new title: 'Niagara Falls',
                       user: User.new
     pin_2.save!
 
@@ -77,8 +77,8 @@ class PinsTest < ApplicationSystemTestCase
     click_on('Search', match: :first)
 
     assert current_path.include?(pins_path)
-    assert page.has_content?('Climb Mont Blanc')
-    refute page.has_content?('Visit Niagara Falls')
+    assert page.has_content?('Mont Blanc')
+    refute page.has_content?('Niagara Falls')
   end
 
   test 'search no pin found' do
@@ -108,5 +108,86 @@ class PinsTest < ApplicationSystemTestCase
     assert page.has_content?('Provence')
     refute page.has_content?('Kitty')
   end
+
+  test 'validation test for creating pins tag too long' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(new_pin_path)
+    fill_in('Title', with: 'Test Pin')
+    fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
+    click_on('Create Pin', match: :first)
+
+    assert page.has_content?('Tag is too long (maximum is 30 characters)')
+  end
+
+  test 'validation test for creating pins no title' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(new_pin_path)
+    click_on('Create Pin', match: :first)
+
+    assert page.has_content?("Title can't be blank")
+  end
+
+  test 'validation test for creating pins no title and tag too long' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(new_pin_path)
+    fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
+    click_on('Create Pin', match: :first)
+
+    assert page.has_content?("Title can't be blank")
+    assert page.has_content?('Tag is too long (maximum is 30 characters)')
+  end
+
+  test 'validation test for editing pins tag too long' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(edit_pin_path)
+    fill_in('Title', with: 'Test Pin')
+    fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
+    click_on('Update Pin', match: :first)
+
+    assert page.has_content?('Tag is too long (maximum is 30 characters)')
+  end
+
+  test 'validation test for editing pins no title' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(edit_pin_path)
+    click_on('Update Pin', match: :first)
+
+    assert page.has_content?("Title can't be blank")
+  end
+
+  test 'validation test for editing pins no title and tag too long' do
+    user = User.new email: 'an@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(edit_pin_path)
+    fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
+    click_on('Update Pin', match: :first)
+
+    assert page.has_content?("Title can't be blank")
+    assert page.has_content?('Tag is too long (maximum is 30 characters)')
+  end
+
 
 end

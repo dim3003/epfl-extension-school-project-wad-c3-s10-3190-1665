@@ -36,17 +36,17 @@ class PinsTest < ApplicationSystemTestCase
   end
 
   test 'index loads pins' do
-    pin_1 = Pin.new title: 'Join a tennis club',
+    pin_1 = Pin.new title: 'tennis club',
                     user: User.new
     pin_1.save!
 
-    pin_2 = Pin.new title: 'Start a blog',
+    pin_2 = Pin.new title: 'blog',
                     user: User.new
     pin_2.save!
 
     visit(pins_path)
-    assert page.has_content?('Join a tennis club')
-    assert page.has_content?('Start a blog')
+    assert page.has_content?('tennis club')
+    assert page.has_content?('blog')
   end
 
   test 'edit pin test' do
@@ -152,10 +152,13 @@ class PinsTest < ApplicationSystemTestCase
   test 'validation test for editing pins tag too long' do
     user = User.new email: 'an@email.com'
     user.save!
+    pin = Pin.new title: 'Test Pin',
+                user: User.new
+    pin.save!
     visit(new_user_path)
     fill_in('Email address', with: user.email)
     click_on('Log in', match: :first)
-    visit(edit_pin_path)
+    visit(edit_pin_path(pin))
     fill_in('Title', with: 'Test Pin')
     fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
     click_on('Update Pin', match: :first)
@@ -166,10 +169,14 @@ class PinsTest < ApplicationSystemTestCase
   test 'validation test for editing pins no title' do
     user = User.new email: 'an@email.com'
     user.save!
+    pin = Pin.new title: 'Test Pin',
+                user: User.new
+    pin.save!
     visit(new_user_path)
     fill_in('Email address', with: user.email)
     click_on('Log in', match: :first)
-    visit(edit_pin_path)
+    visit(edit_pin_path(pin))
+    fill_in('Title', with: '')
     click_on('Update Pin', match: :first)
 
     assert page.has_content?("Title can't be blank")
@@ -178,10 +185,14 @@ class PinsTest < ApplicationSystemTestCase
   test 'validation test for editing pins no title and tag too long' do
     user = User.new email: 'an@email.com'
     user.save!
+    pin = Pin.new title: 'Test Pin',
+                user: User.new
+    pin.save!
     visit(new_user_path)
     fill_in('Email address', with: user.email)
     click_on('Log in', match: :first)
-    visit(edit_pin_path)
+    visit(edit_pin_path(pin))
+    fill_in('Title', with: '')
     fill_in('Tag', with: 'a tag which is too long to be validated because it has to be max 30 characters')
     click_on('Update Pin', match: :first)
 

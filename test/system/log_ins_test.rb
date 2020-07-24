@@ -28,7 +28,18 @@ class LogInsTest < ApplicationSystemTestCase
     fill_in('Email address', with: user.email)
     click_on('Log in', match: :first)
     visit(pins_path)
-    sleep(10.seconds)
     assert page.has_content?('Create a new Pin')
+  end
+
+  test 'sign up / login link only available when logged in' do
+    visit('/')
+    assert page.has_content?('Sign up / Log in')
+    user = User.new email: 'abogus@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit('/')
+    refute page.has_content?('Sign up / Log in')
   end
 end

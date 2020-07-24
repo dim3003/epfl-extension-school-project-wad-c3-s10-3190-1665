@@ -19,4 +19,16 @@ class LogInsTest < ApplicationSystemTestCase
     assert_equal 1, User.all.length
   end
 
+  test 'can create pin only when logged in' do
+    visit(pins_path)
+    refute page.has_content?('Create a new Pin')
+    user = User.new email: 'abogus@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit(pins_path)
+    sleep(10.seconds)
+    assert page.has_content?('Create a new Pin')
+  end
 end

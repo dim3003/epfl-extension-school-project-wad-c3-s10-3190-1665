@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
-    @usernew = User.new
+    @user = User.new
+    @disablePins = true
   end
 
   def create

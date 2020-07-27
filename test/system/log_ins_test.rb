@@ -33,7 +33,7 @@ class LogInsTest < ApplicationSystemTestCase
 
   test 'sign up / login link only available when logged in' do
     visit('/')
-    assert page.has_content?('Sign up / Log in')
+    assert page.has_content?('Sign up / Login')
     user = User.new email: 'abogus@email.com'
     user.save!
     visit(new_user_path)

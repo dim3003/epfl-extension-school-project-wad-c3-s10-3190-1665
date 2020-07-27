@@ -43,6 +43,18 @@ class LogInsTest < ApplicationSystemTestCase
     refute page.has_content?('Sign up / Log in')
   end
 
+  test 'My Pins link only available when logged in' do
+    visit('/')
+    refute page.has_content?('My Pins')
+    user = User.new email: 'abogus@email.com'
+    user.save!
+    visit(new_user_path)
+    fill_in('Email address', with: user.email)
+    click_on('Log in', match: :first)
+    visit('/')
+    assert page.has_content?('My Pins')
+  end
+
   test 'can only edit or add pins when logged in' do
     pin = Pin.new title: 'New Pin',
                   user: User.new
